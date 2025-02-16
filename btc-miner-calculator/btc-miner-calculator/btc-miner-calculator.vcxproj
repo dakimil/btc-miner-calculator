@@ -129,6 +129,10 @@
   <ItemGroup>
     <ClCompile Include="btc-miner-calculator.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="hourly_data.txt" />
+    <Text Include="hourly_data_original.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
