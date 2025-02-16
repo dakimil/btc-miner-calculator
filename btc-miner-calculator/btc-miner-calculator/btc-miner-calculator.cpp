@@ -53,7 +53,8 @@ void readFile(string file_path, string data[9000]) {
 int main()
 {
     string data[9000];
-    string input_file_path = "C:\\Users\\daki\\Desktop\\hourly_data.txt";
+    //string input_file_path = "C:\\Users\\daki\\Desktop\\hourly_data.txt";
+    string input_file_path = "hourly_data.txt";
     readFile(input_file_path, data);
 
     /*for (int i = 0; i < 9000; i++) {

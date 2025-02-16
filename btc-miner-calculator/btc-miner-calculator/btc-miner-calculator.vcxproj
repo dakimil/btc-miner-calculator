@@ -109,6 +109,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy  "$(ProjectDir)hourly_data.txt" "$(TargetDir)" /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -130,7 +133,9 @@
     <ClCompile Include="btc-miner-calculator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="hourly_data.txt" />
+    <Text Include="hourly_data.txt">
+      <DeploymentContent>true</DeploymentContent>
+    </Text>
     <Text Include="hourly_data_original.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
