@@ -36,7 +36,7 @@ hourly_data new_data(string separated_data[6]) {
     return hd;
 }
 
-int readFile(string file_path, hourly_data data[9000]) {
+int readFile(string file_path, hourly_data* data) {
     //iterator
     int i = 0;
 
@@ -70,35 +70,30 @@ int readFile(string file_path, hourly_data data[9000]) {
     return i;
 }
 
-void number_of_miners_each_hour(calculation_data podaci, int miner_power) {
-    for (int i = 0; i < podaci.n; i++) {
-        podaci.array_of_hours[i].no_of_miners = podaci.array_of_hours[i].power / miner_power;
+void number_of_miners_each_hour(hourly_data* array_of_hours, int n, int miner_power) {
+    for (int i = 0; i < n; i++) {
+        array_of_hours[i].no_of_miners = array_of_hours[i].power / miner_power;
     }
 }
 
+
 int main()
 {
-    
-    calculation_data podaci;
 
     string input_file_path = "hourly_data.txt";
-    podaci.n = readFile(input_file_path, podaci.array_of_hours);
+    hourly_data* array_of_hours = new hourly_data[9000];
+    int n = readFile(input_file_path, array_of_hours);
 
-    cout << "br clanova: " << podaci.n << endl;
+    cout << "br clanova: " << n << endl;
 
-    number_of_miners_each_hour(podaci, 3);
+    number_of_miners_each_hour(array_of_hours, n, 3);
 
-    for (int i = 0; i < podaci.n; i++) {
-        cout << podaci.array_of_hours[i].time << ", " << podaci.array_of_hours[i].power << podaci.array_of_hours[i].no_of_miners << endl;
+
+    for (int i = 0; i < n; i++) {
+        cout << array_of_hours[i].time << ", " << array_of_hours[i].power << ", " << array_of_hours[i].no_of_miners << endl;
     }
 
+    delete[] array_of_hours;
 
-    /*string ret[6];
-    tokenize("20050101:0010,0.0,0.0,0.3,1.03,0.0", ",", ret);
-
-    for (int i = 0; i < 6; i++) {
-        cout << ret[i] << endl;
-    }
-    */
     return 0;
 }
